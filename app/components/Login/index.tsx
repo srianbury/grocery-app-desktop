@@ -6,6 +6,29 @@ import * as CONSTANTS from '../../constants';
 import Spinner from '../Spinner'
 import Error from '../Error'
 
+const FormContainer = ({ children }) => (
+  <div className="container">
+    <div className="row">
+      <div className="col-lg-8 offset-lg-2">{children}</div>
+    </div>
+  </div>
+);
+
+const SwitchForm = ({ text, handleToggle, buttonText}) => (
+  <h6 className='mt-2'>
+    <span className="align-middle">{text}{' '}</span>
+    <span>
+      <button
+        type="button"
+        className="btn btn-link p-0"
+        onClick={handleToggle}
+      >
+        {buttonText}
+      </button>
+    </span>
+  </h6>
+)
+
 const LoginBase = () => {
   const [alreadyAUser, setAlreadyAUser] = useState(true);
   function handleToggle() {
@@ -94,7 +117,7 @@ const SignUpContainer = ({ handleToggle }) => {
 };
 
 const SignUpView = ({ formik, handleSignUp, handleToggle }) => (
-  <div className="d-flex justify-content-center">
+  <FormContainer>
     <form onSubmit={formik.handleSubmit}>
       <h1>Sign Up</h1>
 
@@ -172,14 +195,13 @@ const SignUpView = ({ formik, handleSignUp, handleToggle }) => (
         {formik.isSubmitting ? <Spinner /> : 'Sign Up'}
       </button>
 
-      <div>
-        Already a user?{' '}
-        <button type="button" className="btn btn-link" onClick={handleToggle}>
-          Sign up
-        </button>
-      </div>
+      <SwitchForm 
+        text="Already a user?"
+        handleToggle={handleToggle}
+        buttonText='Login'
+      />
     </form>
-  </div>
+  </FormContainer>
 );
 
 const LoginContainer = ({ handleToggle }) => {
@@ -235,7 +257,7 @@ const LoginContainer = ({ handleToggle }) => {
 };
 
 const LoginView = ({ formik, handleToggle }) => (
-  <div className="d-flex justify-content-center">
+  <FormContainer>
     <form onSubmit={formik.handleSubmit}>
       <h1>Login</h1>
       {formik.status && <Error message={formik.status.message} />}
@@ -276,14 +298,13 @@ const LoginView = ({ formik, handleToggle }) => (
       >
         {formik.isSubmitting ? <Spinner /> : 'Login'}
       </button>
-      <div>
-        Don't have an account?{' '}
-        <button type="button" className="btn btn-link" onClick={handleToggle}>
-          Sign up
-        </button>
-      </div>
+      <SwitchForm 
+        text="Don't have an account?"
+        handleToggle={handleToggle}
+        buttonText='Sign Up'
+      />
     </form>
-  </div>
+  </FormContainer>
 );
 
 export default LoginBase;

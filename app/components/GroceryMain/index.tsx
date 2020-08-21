@@ -7,7 +7,11 @@ import Error from '../Error';
 const LENGTH_OF_UPC_CODE = 12;
 
 const AppContainer = ({ children }) => (
-  <div className="d-flex justify-content-center">{children}</div>
+  <div className="container">
+    <div className="row">
+      <div className="col-lg-10 offset-lg-1">{children}</div>
+    </div>
+  </div>
 );
 
 function App(): JSX.Element {
@@ -170,7 +174,11 @@ function App(): JSX.Element {
   }
 
   if (state.loading) {
-    return <Spinner />;
+    return(
+      <div className="d-flex justify-content-center">
+        <Spinner />
+      </div>
+    )
   }
 
   return (
@@ -229,13 +237,13 @@ const ListView = ({ list, handleRemoveItem, handleRemoveAll }) => (
 );
 
 const ClearList = ({ handleRemoveAll }) => (
-  <div className="d-flex justify-content-end mt-3">
+  <div className="d-flex justify-content-end mt-2">
     <button
       type="button"
       className="btn btn-sm btn-danger"
       onClick={handleRemoveAll}
     >
-      Clear List
+      Clear All
     </button>
   </div>
 );
@@ -260,13 +268,15 @@ const ListItemView = ({ id, name, handleRemoveItem }) => (
   <li className="list-group-item">
     <div className="d-flex justify-content-between">
       <div>{name}</div>
-      <button
-        type="button"
-        className="btn btn-sm btn-danger"
-        onClick={() => handleRemoveItem(id)}
-      >
-        Delete
-      </button>
+      <div className="d-flex align-items-center">
+        <button
+          type="button"
+          className="btn btn-sm btn-danger"
+          onClick={() => handleRemoveItem(id)}
+        >
+          <i className="far fa-trash-alt" />
+        </button>
+      </div>
     </div>
   </li>
 );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Login from '../Login'
+import Spinner from '../Spinner'
 
 /*
     user: {
@@ -50,7 +51,11 @@ const Authentication = ({ children }): JSX.Element => {
     }
 
     if(state.loading){
-        return <div>Loading...</div>
+        return (
+            <div className="d-flex justify-content-center mt-4">
+              <Spinner />
+            </div>
+          );
     }
 
     return(
