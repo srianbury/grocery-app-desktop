@@ -3,7 +3,7 @@ import GroceryMain from '../GroceryMain'
 import Header from '../Header'
 
 const App = () => (
-    <div>
+    <div className='mt-2 mb-2'>
         <Header />
         <GroceryMain />
     </div>
